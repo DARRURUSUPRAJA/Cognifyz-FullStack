@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Account Registration</title>
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <header class="top-bar">
+        <div class="container">
+            <h1>Student Portal</h1>
+
+            <nav>
+                <a href="/" class="active">Register</a>
+                <a href="/profile">Profile</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="page">
+
+        <div class="container">
+
+            <section class="registration-card">
+
+                <div class="heading">
+                    <span>CREATE ACCOUNT</span>
+                    <h2>Student Registration</h2>
+                    <p>
+                        Create your student account by entering the required
+                        information below.
+                    </p>
+                </div>
+
+
+                <form id="registrationForm" novalidate>
+
+                    <!-- Name -->
+
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                        >
+
+                        <small id="nameError" class="error"></small>
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            autocomplete="email"
+                        >
+
+                        <small id="emailError" class="error"></small>
+                    </div>
+
+
+                    <!-- Course -->
+
+                    <div class="form-group">
+                        <label for="course">Course</label>
+
+                        <select id="course" name="course">
+                            <option value="">Select your course</option>
+                            <option value="Software Engineering">
+                                Software Engineering
+                            </option>
+                            <option value="Computer Science">
+                                Computer Science
+                            </option>
+                            <option value="Information Technology">
+                                Information Technology
+                            </option>
+                            <option value="Artificial Intelligence">
+                                Artificial Intelligence
+                            </option>
+                        </select>
+
+                        <small id="courseError" class="error"></small>
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a strong password"
+                            autocomplete="new-password"
+                        >
+
+                        <div class="strength-container">
+
+                            <div class="strength-bar">
+                                <div id="strengthFill"></div>
+                            </div>
+
+                            <span id="strengthText">
+                                Password strength: Not entered
+                            </span>
+
+                        </div>
+
+                        <div class="password-rules">
+
+                            <p id="lengthRule">
+                                ✗ At least 8 characters
+                            </p>
+
+                            <p id="upperRule">
+                                ✗ At least one uppercase letter
+                            </p>
+
+                            <p id="numberRule">
+                                ✗ At least one number
+                            </p>
+
+                            <p id="specialRule">
+                                ✗ At least one special character
+                            </p>
+
+                        </div>
+
+                        <small id="passwordError" class="error"></small>
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder="Re-enter your password"
+                            autocomplete="new-password"
+                        >
+
+                        <small id="confirmError" class="error"></small>
+                    </div>
+
+
+                    <!-- About -->
+
+                    <div class="form-group">
+
+                        <label for="about">
+                            About You
+                        </label>
+
+                        <textarea
+                            id="about"
+                            name="about"
+                            rows="4"
+                            maxlength="150"
+                            placeholder="Tell us something about yourself..."
+                        ></textarea>
+
+                        <div class="character-counter">
+                            <span id="characterCount">0</span>/150
+                        </div>
+
+                        <small id="aboutError" class="error"></small>
+
+                    </div>
+
+
+                    <!-- Terms -->
+
+                    <div class="terms">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="terms"
+                            >
+
+                            <span>
+                                I agree to the student portal terms and
+                                conditions.
+                            </span>
+
+                        </label>
+
+                        <small id="termsError" class="error"></small>
+
+                    </div>
+
+
+                    <!-- Dynamic message -->
+
+                    <div id="formMessage" class="form-message"></div>
+
+
+                    <button type="submit" class="submit-button">
+                        Create Account
+                    </button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>Task 4 • Cognifyz Full Stack Development</p>
+    </footer>
+
+
+    <script src="/script.js"></script>
+
+</body>
+</html>

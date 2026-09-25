@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Validation Error</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Validation Error</h1>
+
+        <p class="subtitle">
+            Please correct the following errors:
+        </p>
+
+        <div class="error-box">
+
+            <% errors.forEach(function(error) { %>
+
+                <p>
+                    • <%= error %>
+                </p>
+
+            <% }); %>
+
+        </div>
+
+        <a href="/" class="back-button">
+            Go Back to Form
+        </a>
+
+    </div>
+
+</body>
+
+</html>

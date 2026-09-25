@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Student Feedback</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Feedback</h1>
+
+        <p class="subtitle">
+            Cognifyz Full Stack Development - Task 2
+        </p>
+
+        <form
+            action="/submit"
+            method="POST"
+            onsubmit="return validateForm()"
+        >
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                >
+
+                <span id="nameError" class="error"></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                >
+
+                <span id="emailError" class="error"></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="age">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="age"
+                    name="age"
+                    placeholder="Enter your age"
+                >
+
+                <span id="ageError" class="error"></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="course">
+                    Course
+                </label>
+
+                <select id="course" name="course">
+
+                    <option value="">
+                        Select your course
+                    </option>
+
+                    <option value="Full Stack Development">
+                        Full Stack Development
+                    </option>
+
+                    <option value="Data Science">
+                        Data Science
+                    </option>
+
+                    <option value="Artificial Intelligence">
+                        Artificial Intelligence
+                    </option>
+
+                    <option value="Cyber Security">
+                        Cyber Security
+                    </option>
+
+                </select>
+
+                <span id="courseError" class="error"></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Rating
+                </label>
+
+                <div class="rating">
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="rating"
+                            value="1"
+                        >
+                        1
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="rating"
+                            value="2"
+                        >
+                        2
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="rating"
+                            value="3"
+                        >
+                        3
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="rating"
+                            value="4"
+                        >
+                        4
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="rating"
+                            value="5"
+                        >
+                        5
+                    </label>
+
+                </div>
+
+                <span id="ratingError" class="error"></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="feedback">
+                    Feedback
+                </label>
+
+                <textarea
+                    id="feedback"
+                    name="feedback"
+                    rows="5"
+                    placeholder="Write your feedback"
+                ></textarea>
+
+                <span id="feedbackError" class="error"></span>
+
+            </div>
+
+
+            <div class="agreement">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="agreement"
+                        name="agreement"
+                        value="yes"
+                    >
+
+                    I agree to submit this feedback.
+
+                </label>
+
+                <span id="agreementError" class="error"></span>
+
+            </div>
+
+
+            <button type="submit">
+                Submit Feedback
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        function validateForm() {
+
+            let valid = true;
+
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("ageError").textContent = "";
+            document.getElementById("courseError").textContent = "";
+            document.getElementById("ratingError").textContent = "";
+            document.getElementById("feedbackError").textContent = "";
+            document.getElementById("agreementError").textContent = "";
+
+            const name =
+                document.getElementById("name").value.trim();
+
+            if (name.length < 3) {
+
+                document.getElementById("nameError").textContent =
+                    "Name must contain at least 3 characters.";
+
+                valid = false;
+            }
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+
+                document.getElementById("emailError").textContent =
+                    "Enter a valid email address.";
+
+                valid = false;
+            }
+
+            const age =
+                Number(document.getElementById("age").value);
+
+            if (age < 16 || age > 100) {
+
+                document.getElementById("ageError").textContent =
+                    "Age must be between 16 and 100.";
+
+                valid = false;
+            }
+
+            const course =
+                document.getElementById("course").value;
+
+            if (course === "") {
+
+                document.getElementById("courseError").textContent =
+                    "Please select a course.";
+
+                valid = false;
+            }
+
+            const rating =
+                document.querySelector(
+                    'input[name="rating"]:checked'
+                );
+
+            if (!rating) {
+
+                document.getElementById("ratingError").textContent =
+                    "Please select a rating.";
+
+                valid = false;
+            }
+
+            const feedback =
+                document.getElementById("feedback").value.trim();
+
+            if (feedback.length < 10) {
+
+                document.getElementById("feedbackError").textContent =
+                    "Feedback must contain at least 10 characters.";
+
+                valid = false;
+            }
+
+            const agreement =
+                document.getElementById("agreement").checked;
+
+            if (!agreement) {
+
+                document.getElementById("agreementError").textContent =
+                    "You must agree before submitting.";
+
+                valid = false;
+            }
+
+
+            return valid;
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cognifyz Learning Hub</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                Cognifyz Hub
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#courses">Courses</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#register">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-lg-7">
+                    <p class="small-title">LEARN • BUILD • GROW</p>
+
+                    <h1>
+                        Build Your Skills
+                        <span>For The Future</span>
+                    </h1>
+
+                    <p class="hero-text">
+                        Explore practical learning opportunities and improve
+                        your technical skills through hands-on development.
+                    </p>
+
+                    <a href="#courses" class="btn main-btn">
+                        Explore Courses
+                    </a>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="hero-card">
+                        <div class="circle-icon">🚀</div>
+                        <h3>Start Learning</h3>
+                        <p>
+                            Turn your ideas into useful projects with
+                            practical development experience.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="courses" class="section-space">
+        <div class="container">
+
+            <div class="section-heading">
+                <p>OUR PROGRAMS</p>
+                <h2>Choose Your Learning Path</h2>
+                <span>
+                    Develop modern technical skills through practical learning.
+                </span>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card">
+                        <div class="course-icon">💻</div>
+                        <h3>Web Development</h3>
+                        <p>
+                            Learn HTML, CSS, JavaScript and modern web
+                            development concepts.
+                        </p>
+                        <a href="#register">Join Course →</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card featured-card">
+                        <div class="course-icon">⚙️</div>
+                        <h3>Full Stack Development</h3>
+                        <p>
+                            Build complete applications using frontend,
+                            backend and database technologies.
+                        </p>
+                        <a href="#register">Join Course →</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="course-card">
+                        <div class="course-icon">🤖</div>
+                        <h3>AI & Data</h3>
+                        <p>
+                            Understand data-driven applications and
+                            introductory artificial intelligence concepts.
+                        </p>
+                        <a href="#register">Join Course →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="features" class="features-section">
+        <div class="container">
+
+            <div class="section-heading light-heading">
+                <p>WHY LEARN WITH US?</p>
+                <h2>Learning That Moves With You</h2>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-number">01</div>
+                        <h3>Practical</h3>
+                        <p>
+                            Work on practical concepts instead of learning
+                            only through theory.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-number">02</div>
+                        <h3>Responsive</h3>
+                        <p>
+                            Explore a learning platform designed to work
+                            smoothly across different screen sizes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="feature-number">03</div>
+                        <h3>Project Based</h3>
+                        <p>
+                            Strengthen your skills by creating useful
+                            development projects.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="register" class="register-section">
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-7">
+
+                    <div class="register-card">
+
+                        <div class="section-heading">
+                            <p>GET STARTED</p>
+                            <h2>Register Your Interest</h2>
+                            <span>
+                                Fill in the details below to explore the program.
+                            </span>
+                        </div>
+
+                        <% if (submitted) { %>
+
+                            <div class="success-message">
+                                <h4>Registration Successful!</h4>
+
+                                <p>
+                                    Thank you, <strong><%= name %></strong>.
+                                </p>
+
+                                <p>
+                                    Selected course:
+                                    <strong><%= course %></strong>
+                                </p>
+                            </div>
+
+                        <% } %>
+
+                        <form action="/register" method="POST">
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="course" class="form-label">
+                                    Select Course
+                                </label>
+
+                                <select
+                                    id="course"
+                                    name="course"
+                                    class="form-select"
+                                    required
+                                >
+                                    <option value="">
+                                        Choose a course
+                                    </option>
+
+                                    <option value="Web Development">
+                                        Web Development
+                                    </option>
+
+                                    <option value="Full Stack Development">
+                                        Full Stack Development
+                                    </option>
+
+                                    <option value="AI & Data">
+                                        AI & Data
+                                    </option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn submit-btn">
+                                Submit Registration
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                © 2026 Cognifyz Learning Hub. Built for Task 3.
+            </p>
+        </div>
+    </footer>
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student API Manager</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        header p {
+            margin-top: 8px;
+            color: #cbd5e1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+        .form-card,
+        .students-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        button {
+            border: none;
+            padding: 11px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .student {
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .student h3 {
+            margin-bottom: 8px;
+        }
+
+        .student p {
+            margin: 5px 0;
+            color: #475569;
+        }
+
+        .delete-button {
+            background: #dc2626;
+            margin-top: 10px;
+        }
+
+        .delete-button:hover {
+            background: #b91c1c;
+        }
+
+        #message {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Student API Manager</h1>
+        <p>REST API and Front-End Interaction</p>
+    </header>
+
+    <main class="container">
+
+        <section class="form-card">
+
+            <h2>Add Student</h2>
+
+            <p id="message"></p>
+
+            <form id="studentForm">
+
+                <div class="form-grid">
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Student Name"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="course"
+                        placeholder="Course"
+                        required
+                    >
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Email Address"
+                        required
+                    >
+
+                </div>
+
+                <br>
+
+                <button type="submit">
+                    Add Student
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="students-card">
+
+            <h2>Student List</h2>
+
+            <div id="studentList">
+                Loading students...
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+
+        const studentForm = document.getElementById("studentForm");
+        const studentList = document.getElementById("studentList");
+        const message = document.getElementById("message");
+
+        // GET - Fetch students from API
+        async function loadStudents() {
+
+            try {
+
+                const response = await fetch("/api/students");
+
+                const students = await response.json();
+
+                studentList.innerHTML = "";
+
+                students.forEach(student => {
+
+                    const studentDiv = document.createElement("div");
+
+                    studentDiv.className = "student";
+
+                    studentDiv.innerHTML = `
+                        <h3>${student.name}</h3>
+
+                        <p><strong>Course:</strong> ${student.course}</p>
+
+                        <p><strong>Email:</strong> ${student.email}</p>
+
+                        <button
+                            class="delete-button"
+                            onclick="deleteStudent(${student.id})"
+                        >
+                            Delete
+                        </button>
+                    `;
+
+                    studentList.appendChild(studentDiv);
+                });
+
+            } catch (error) {
+
+                studentList.innerHTML =
+                    "Unable to load students.";
+
+            }
+        }
+
+        // POST - Add student
+        studentForm.addEventListener("submit", async function(event) {
+
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const course = document.getElementById("course").value;
+            const email = document.getElementById("email").value;
+
+            const response = await fetch("/api/students", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    name,
+                    course,
+                    email
+                })
+
+            });
+
+            const result = await response.json();
+
+            message.textContent = result.message;
+
+            if (response.ok) {
+
+                studentForm.reset();
+
+                loadStudents();
+
+            }
+
+        });
+
+        // DELETE - Delete student
+        async function deleteStudent(id) {
+
+            const response = await fetch(`/api/students/${id}`, {
+
+                method: "DELETE"
+
+            });
+
+            const result = await response.json();
+
+            message.textContent = result.message;
+
+            loadStudents();
+        }
+
+        // Load students when page opens
+        loadStudents();
+
+    </script>
+
+</body>
+</html>
